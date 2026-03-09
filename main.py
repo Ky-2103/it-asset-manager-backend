@@ -13,7 +13,7 @@ from routers.users import router as users_router
 
 
 origins = [
-    "https://it-asset-manager-bxn0.onrender.com",
+    "https://it-asset-manager-frontend-kqxx.onrender.com",
     "https://localhost:5173",
 ]
 
@@ -62,3 +62,4 @@ app.include_router(auth_router)
 app.include_router(users_router)
 app.include_router(assets_router)
 app.include_router(tickets_router)
+

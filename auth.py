@@ -12,6 +12,7 @@ from sqlalchemy.orm import Session
 from database import get_db
 from models import Asset, Ticket, User
 from schemas import UserLogin, UserOut, UserRegister
+from seed import seed_database
 
 router = APIRouter(tags=["Auth"])
 bearer_scheme = HTTPBearer(auto_error=False)
@@ -178,6 +179,14 @@ def admin_required(current_user: User = Depends(get_current_user)) -> User:
     if current_user.role != "admin":
         raise HTTPException(status_code=403, detail="Admin access required")
     return current_user
+
+
+@router.post("/seed")
+def run_seed_data(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(admin_required),
+):
+    return seed_database(db)
 
 
 @router.get("/dashboard")

@@ -1,0 +1,28 @@
+[project]
+name = "it-asset-manager-backend"
+version = "0.1.0"
+description = "The backend for the IT Asset Mangaer"
+authors = [
+    {name = "Ky",email = "129761568+Kyantae@users.noreply.github.com"}
+]
+license = {text = "None"}
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi (>=0.129.0,<0.130.0)",
+    "uvicorn (>=0.40.0,<0.41.0)",
+    "sqlalchemy (>=2.0.46,<3.0.0)",
+    "bcrypt (>=4.0.1,<5.0.0)",
+    "python-multipart (>=0.0.22,<0.0.23)",
+    "jinja2 (>=3.1.6,<4.0.0)",
+    "psycopg2-binary (>=2.9.11,<3.0.0)",
+    "PyJWT (>=2.10.1,<3.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+package-mode = false

@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: it-asset-manager-backend
+    env: python
+    plan: free
+    buildCommand: pip install poetry && poetry install --only main
+    startCommand: poetry run uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13.0
+      - key: RUN_DB_CREATE_ALL_ON_STARTUP
+        value: "false"
+      - key: RUN_ADMIN_BOOTSTRAP_ON_STARTUP
+        value: "false"
+      - key: DB_CONNECT_TIMEOUT_SECONDS
+        value: "5"

@@ -1,0 +1,12 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Test/cache tooling
+.pytest_cache/
+
+# Python bytecode
+*.pyc
+*.pyo
+*.pyd
+

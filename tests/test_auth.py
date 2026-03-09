@@ -88,3 +88,24 @@ def test_bootstrap_initial_admin_skips_short_password(db_session, monkeypatch):
     bootstrap_initial_admin(db_session)
 
     assert db_session.query(User).count() == 0
+
+
+def test_admin_can_seed_data_from_endpoint(client, db_session):
+    admin = create_user(db_session, "admin_seed", "admin_seed@example.com", role="admin")
+
+    response = client.post("/seed", headers=auth_header_for(admin))
+
+    assert response.status_code == 200
+    body = response.json()
+    assert body["users"] >= 10
+    assert body["assets"] >= 10
+    assert body["tickets"] >= 10
+
+
+def test_non_admin_cannot_seed_data_from_endpoint(client, db_session):
+    regular = create_user(db_session, "regular_seed", "regular_seed@example.com", role="regular")
+
+    response = client.post("/seed", headers=auth_header_for(regular))
+
+    assert response.status_code == 403
+    assert response.json()["detail"] == "Admin access required"

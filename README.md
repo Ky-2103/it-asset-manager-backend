@@ -78,6 +78,13 @@ poetry run python scripts/seed_data.py
 
 This script creates at least 10 users, 10 assets, and 10 tickets if data is missing.
 
+You can also trigger seeding through the API (admin token required):
+
+```bash
+curl -X POST http://localhost:8000/seed \
+  -H "Authorization: Bearer <ADMIN_JWT_TOKEN>"
+```
+
 ## Common development commands
 
 ```bash
